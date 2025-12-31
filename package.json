@@ -1,0 +1,15 @@
+{
+  "name": "hono-backend-cicd",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "hono": "^4.11.3"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^25.0.3",
+    "vitest": "^4.0.16"
+  }
+}
