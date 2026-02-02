@@ -1,9 +1,12 @@
-import { Hono } from 'hono'
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
 
-const app = new Hono()
+const app = new Hono();
 
-app.get('/', (c) => {
-  return c.text('Hello Hono! The Backend works fine.')
-})
+app.use('*', cors());
 
-export default app
+app.get('/health', (c) => {
+  return c.json({ status: 'BACKEND IS FUNCTIONAL' });
+});
+
+export default app;
