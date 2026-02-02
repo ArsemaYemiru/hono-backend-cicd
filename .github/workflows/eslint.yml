@@ -50,3 +50,6 @@ jobs:
       - name: Build Docker image
         run: docker build -t hono-backend .
 
+      - name: Run tests
+        run: npm test
+
