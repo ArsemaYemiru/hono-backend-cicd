@@ -38,7 +38,7 @@ app.get('/', (c) => {
 // Health check endpoint
 app.get('/health', (c) => {
   return c.json({
-    status: 'BACKEND IS FUNCTIONAL',
+    status: 'OK',
     timestamp: new Date().toISOString(),
     uptime: process.uptime()
   })
