@@ -1,6 +1,10 @@
-import { Hono } from 'hono'
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
 
-const app = new Hono()
+const app = new Hono();
+
+// Enable CORS for frontend connection
+app.use('*', cors());
 
 // Sample user data
 interface User {
@@ -34,7 +38,7 @@ app.get('/', (c) => {
 // Health check endpoint
 app.get('/health', (c) => {
   return c.json({
-    status: 'OK',
+    status: 'BACKEND IS FUNCTIONAL',
     timestamp: new Date().toISOString(),
     uptime: process.uptime()
   })
@@ -90,4 +94,4 @@ app.get('/api/status', (c) => {
   })
 })
 
-export default app
+export default app;
