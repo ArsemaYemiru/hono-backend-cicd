@@ -143,16 +143,16 @@ describe('Integration Tests', () => {
         })
     })
 
-    // describe('Email Validations', () => {
-    //     it('should have valid email format for all users', async () => {
-    //         const res = await app.request('/api/users')
-    //         const body = await res.json()
+    describe('Email Validations', () => {
+        it('should have valid email format for all users', async () => {
+            const res = await app.request('/api/users')
+            const body = await res.json()
 
-    //         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-    //         body.data.forEach((user: { email: string }) => {
-    //             expect(user.email).toMatch(emailRegex)
-    //         })
-    //     })
-    // })
+            body.data.forEach((user: { email: string }) => {
+                expect(user.email).toMatch(emailRegex)
+            })
+        })
+    })
 })
