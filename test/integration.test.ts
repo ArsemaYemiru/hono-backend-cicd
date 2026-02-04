@@ -15,7 +15,7 @@ describe('Integration Tests', () => {
             expect(usersBody.data.length).toBeGreaterThan(0)
 
             // Step 3: Get specific user
-            const userId = usersBody.data[0].id
+            const userId = (usersBody.data[0] as { id: number }).id
             const userRes = await app.request(`/api/users/${userId}`)
             expect(userRes.status).toBe(200)
             const userBody = await userRes.json()
@@ -125,7 +125,7 @@ describe('Integration Tests', () => {
             const res = await app.request('/api/users')
             const body = await res.json()
 
-            const roles = body.data.map((user: any) => user.role)
+            const roles = body.data.map((user: { role: string }) => user.role)
             const uniqueRoles = [...new Set(roles)]
 
             expect(uniqueRoles.length).toBeGreaterThan(1)
@@ -137,9 +137,9 @@ describe('Integration Tests', () => {
             const res = await app.request('/api/users')
             const body = await res.json()
 
-            const adminUser = body.data.find((user: any) => user.role === 'admin')
+            const adminUser = body.data.find((user: { role: string, name: string }) => user.role === 'admin')
             expect(adminUser).toBeDefined()
-            expect(adminUser.name).toBe('Alice Johnson')
+            expect(adminUser?.name).toBe('Alice Johnson')
         })
     })
 
@@ -150,7 +150,7 @@ describe('Integration Tests', () => {
 
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-            body.data.forEach((user: any) => {
+            body.data.forEach((user: { email: string }) => {
                 expect(user.email).toMatch(emailRegex)
             })
         })
